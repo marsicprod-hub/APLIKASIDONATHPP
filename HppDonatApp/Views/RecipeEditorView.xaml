@@ -1,0 +1,56 @@
+<Page
+    x:Class="HppDonatApp.Views.RecipeEditorView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Padding="20" Spacing="20">
+        <TextBlock Text="Recipe Editor" Style="{StaticResource HeaderTextBlockStyle}" />
+
+        <StackPanel Spacing="10" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,10">
+            <TextBlock Text="Recipe Details" Style="{StaticResource SubheaderTextBlockStyle}" />
+            
+            <StackPanel Spacing="5">
+                <TextBlock Text="Recipe Name" />
+                <TextBox x:Name="RecipeNameBox" PlaceholderText="Enter recipe name" Width="300" />
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <TextBlock Text="Theoretical Output" />
+                <NumberBox x:Name="OutputBox" Value="100" Minimum="1" SpinButtonPlacementMode="Inline" />
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <TextBlock Text="Waste Percentage" />
+                <NumberBox x:Name="WasteBox" Value="0.05" Minimum="0" Maximum="0.5" Step="0.01" SpinButtonPlacementMode="Inline" />
+            </StackPanel>
+
+            <Button Content="Create New Recipe" Click="CreateRecipeButton_Click" />
+        </StackPanel>
+
+        <StackPanel Spacing="10" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,10">
+            <TextBlock Text="Ingredients" Style="{StaticResource SubheaderTextBlockStyle}" />
+            <DataGrid x:Name="IngredientsGrid" Height="250" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Ingredient" Binding="{Binding IngredientId}" />
+                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" />
+                    <DataGridTextColumn Header="Price/Unit" Binding="{Binding PricePerUnit}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel Spacing="10">
+            <TextBlock Text="Cost Preview" Style="{StaticResource SubheaderTextBlockStyle}" />
+            <Button Content="Preview Cost" Click="PreviewButton_Click" />
+            
+            <StackPanel x:Name="PreviewPanel" Spacing="5">
+                <TextBlock x:Name="PreviewCostText" Text="Unit Cost: -" />
+                <TextBlock x:Name="PreviewPriceText" Text="Suggested Price: -" />
+            </StackPanel>
+        </StackPanel>
+
+        <Button Content="Save Recipe" Click="SaveButton_Click" />
+        <TextBlock x:Name="StatusText" Text="Ready" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+    </StackPanel>
+</Page>

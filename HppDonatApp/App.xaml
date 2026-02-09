@@ -1,0 +1,22 @@
+<Application
+    x:Class="HppDonatApp.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HppDonatApp">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <!-- MUX2 Resources removed from default -->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Custom Colors and Brushes -->
+            <Color x:Key="AppPrimaryColor">#FF2E7D32</Color>
+            <Color x:Key="AppAccentColor">#FFF57F17</Color>
+            <SolidColorBrush x:Key="AppPrimaryBrush" Color="{StaticResource AppPrimaryColor}" />
+            <SolidColorBrush x:Key="AppAccentBrush" Color="{StaticResource AppAccentColor}" />
+
+            <!-- Default custom styles go here -->
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,48 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        dotnet-version: ['10.0.x']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+        include-prerelease: true
+
+    - name: Restore dependencies
+      run: dotnet restore HppDonatApp.sln
+
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore HppDonatApp.sln
+
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" /p:CoverageOutputFormat=cobertura
+
+    - name: Upload coverage reports
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.cobertura.xml
+        fail_ci_if_error: false
+        verbose: true
+
+    - name: Check build output
+      if: always()
+      run: |
+        echo "::group::Solution Structure"
+        dir /s *.csproj
+        echo "::endgroup::"

@@ -1,0 +1,31 @@
+<Page
+    x:Class="HppDonatApp.Views.DashboardView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:HppDonatApp.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Padding="20" Spacing="20">
+        <TextBlock Text="Dashboard - HPP Calculator" Style="{StaticResource HeaderTextBlockStyle}" />
+
+        <StackPanel Spacing="10">
+            <TextBlock Text="Select a recipe to calculate cost" Style="{StaticResource BodyTextBlockStyle}" />
+            <ComboBox x:Name="RecipeComboBox" Width="300" PlaceholderText="Select a recipe..." />
+            <Button Content="Calculate Cost" Click="CalculateButton_Click" />
+        </StackPanel>
+
+        <Border BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,1,0,0" Padding="0,10,0,10" />
+
+        <StackPanel x:Name="ResultsPanel" Spacing="10">
+            <TextBlock Text="Calculation Results" Style="{StaticResource BodyStrongTextBlockStyle}" />
+            <StackPanel Spacing="5">
+                <TextBlock x:Name="UnitCostText" Text="Unit Cost: -" />
+                <TextBlock x:Name="SuggestedPriceText" Text="Suggested Price: -" />
+                <TextBlock x:Name="MarginText" Text="Margin: -" />
+                <TextBlock x:Name="PriceWithVatText" Text="Price (with VAT): -" />
+            </StackPanel>
+        </StackPanel>
+
+        <TextBlock x:Name="StatusText" Text="Ready" Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+    </StackPanel>
+</Page>
