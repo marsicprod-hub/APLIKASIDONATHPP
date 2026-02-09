@@ -11,10 +11,29 @@ public static class RoundingEngine
     /// </summary>
     public class RoundingRule
     {
+        /// <summary>
+        /// Gets or sets the unique rule identifier.
+        /// </summary>
         public string Id { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the display name for the rule.
+        /// </summary>
         public string Name { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Gets or sets the rounding increment (e.g., 100, 250).
+        /// </summary>
         public decimal RoundTo { get; set; }
+
+        /// <summary>
+        /// Gets or sets whether to subtract one after rounding (e.g., 99 pricing).
+        /// </summary>
         public bool SubtractOne { get; set; } // For 99 pricing
+
+        /// <summary>
+        /// Gets or sets a short description of the rule.
+        /// </summary>
         public string Description { get; set; } = string.Empty;
     }
 

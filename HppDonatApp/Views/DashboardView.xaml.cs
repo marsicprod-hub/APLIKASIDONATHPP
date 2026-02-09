@@ -2,6 +2,7 @@ namespace HppDonatApp.Views;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using HppDonatApp.ViewModels;
 using HppDonatApp.Services;
 

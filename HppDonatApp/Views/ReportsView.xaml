@@ -5,7 +5,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Padding="20" Spacing="20">
-        <TextBlock Text="Reports & Analytics" Style="{StaticResource HeaderTextBlockStyle}" />
+        <TextBlock Text="Reports &amp; Analytics" Style="{StaticResource HeaderTextBlockStyle}" />
 
         <TextBlock Text="Price History and Trend Analysis" Style="{StaticResource SubheaderTextBlockStyle}" />
 

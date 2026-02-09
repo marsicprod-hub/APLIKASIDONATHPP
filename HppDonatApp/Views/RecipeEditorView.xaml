@@ -22,7 +22,7 @@
 
             <StackPanel Spacing="5">
                 <TextBlock Text="Waste Percentage" />
-                <NumberBox x:Name="WasteBox" Value="0.05" Minimum="0" Maximum="0.5" Step="0.01" SpinButtonPlacementMode="Inline" />
+                <NumberBox x:Name="WasteBox" Value="0.05" Minimum="0" Maximum="0.5" SmallChange="0.01" SpinButtonPlacementMode="Inline" />
             </StackPanel>
 
             <Button Content="Create New Recipe" Click="CreateRecipeButton_Click" />
@@ -30,14 +30,36 @@
 
         <StackPanel Spacing="10" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,0,0,1" Padding="0,0,0,10">
             <TextBlock Text="Ingredients" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <DataGrid x:Name="IngredientsGrid" Height="250" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Ingredient" Binding="{Binding IngredientId}" />
-                    <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-                    <DataGridTextColumn Header="Unit" Binding="{Binding Unit}" />
-                    <DataGridTextColumn Header="Price/Unit" Binding="{Binding PricePerUnit}" />
-                </DataGrid.Columns>
-            </DataGrid>
+            <Grid Padding="0,0,0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Ingredient" FontWeight="SemiBold" />
+                <TextBlock Text="Quantity" FontWeight="SemiBold" Grid.Column="1" />
+                <TextBlock Text="Unit" FontWeight="SemiBold" Grid.Column="2" />
+                <TextBlock Text="Price/Unit" FontWeight="SemiBold" Grid.Column="3" />
+            </Grid>
+            <ListView x:Name="IngredientsGrid" Height="250" SelectionMode="None" HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding IngredientId}" />
+                            <TextBlock Text="{Binding Quantity}" Grid.Column="1" />
+                            <TextBlock Text="{Binding Unit}" Grid.Column="2" />
+                            <TextBlock Text="{Binding PricePerUnit}" Grid.Column="3" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
 
         <StackPanel Spacing="10">

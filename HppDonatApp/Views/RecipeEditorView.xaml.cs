@@ -2,6 +2,7 @@ namespace HppDonatApp.Views;
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using HppDonatApp.ViewModels;
 using HppDonatApp.Services;
 using HppDonatApp.Data.Repositories;
@@ -35,8 +36,11 @@ public sealed partial class RecipeEditorView : Page
         if (_viewModel != null)
         {
             _viewModel.RecipeName = RecipeNameBox.Text ?? "New Recipe";
-            _viewModel.TheoreticalOutput = (int)(OutputBox.Value ?? 100);
-            _viewModel.WastePercent = (decimal)(WasteBox.Value ?? 0.05);
+            var outputValue = OutputBox.Value;
+            _viewModel.TheoreticalOutput = (int)(double.IsNaN(outputValue) ? 100d : outputValue);
+
+            var wasteValue = WasteBox.Value;
+            _viewModel.WastePercent = (decimal)(double.IsNaN(wasteValue) ? 0.05d : wasteValue);
 
             await _viewModel.CreateNewRecipeCommand.ExecuteAsync(null);
             StatusText.Text = _viewModel.StatusMessage;

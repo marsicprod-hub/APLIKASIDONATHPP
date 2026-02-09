@@ -11,10 +11,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Custom Colors and Brushes -->
-            <Color x:Key="AppPrimaryColor">#FF2E7D32</Color>
-            <Color x:Key="AppAccentColor">#FFF57F17</Color>
-            <SolidColorBrush x:Key="AppPrimaryBrush" Color="{StaticResource AppPrimaryColor}" />
-            <SolidColorBrush x:Key="AppAccentBrush" Color="{StaticResource AppAccentColor}" />
+            <SolidColorBrush x:Key="AppPrimaryBrush" Color="#FF2E7D32" />
+            <SolidColorBrush x:Key="AppAccentBrush" Color="#FFF57F17" />
 
             <!-- Default custom styles go here -->
         </ResourceDictionary>

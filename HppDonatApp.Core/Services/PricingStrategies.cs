@@ -8,10 +8,22 @@ using HppDonatApp.Core.Interfaces;
 /// </summary>
 public class MarkupBasedStrategy : IPricingStrategy
 {
+    /// <summary>
+    /// Gets the display name for this pricing strategy.
+    /// </summary>
     public string Name => "Markup Based";
 
+    /// <summary>
+    /// Gets a short description of how this strategy prices items.
+    /// </summary>
     public string Description => "Applies a fixed markup percentage to unit cost";
 
+    /// <summary>
+    /// Calculates a price using a markup percentage.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="parameters">Strategy parameters (expects "markup").</param>
+    /// <returns>Suggested selling price.</returns>
     public decimal CalculatePrice(decimal unitCost, Dictionary<string, object> parameters)
     {
         var markup = parameters.TryGetValue("markup", out var markupObj)
@@ -21,6 +33,12 @@ public class MarkupBasedStrategy : IPricingStrategy
         return unitCost * (1m + markup);
     }
 
+    /// <summary>
+    /// Calculates the profit margin for a given price and cost.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="suggestedPrice">Suggested selling price.</param>
+    /// <returns>Margin as a fraction of price.</returns>
     public decimal CalculateMargin(decimal unitCost, decimal suggestedPrice)
     {
         if (suggestedPrice <= 0)
@@ -36,10 +54,22 @@ public class MarkupBasedStrategy : IPricingStrategy
 /// </summary>
 public class TargetMarginStrategy : IPricingStrategy
 {
+    /// <summary>
+    /// Gets the display name for this pricing strategy.
+    /// </summary>
     public string Name => "Target Margin";
 
+    /// <summary>
+    /// Gets a short description of how this strategy prices items.
+    /// </summary>
     public string Description => "Calculates price to achieve a target profit margin";
 
+    /// <summary>
+    /// Calculates a price to reach a target margin.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="parameters">Strategy parameters (expects "targetMargin").</param>
+    /// <returns>Suggested selling price.</returns>
     public decimal CalculatePrice(decimal unitCost, Dictionary<string, object> parameters)
     {
         var targetMargin = parameters.TryGetValue("targetMargin", out var marginObj)
@@ -55,6 +85,12 @@ public class TargetMarginStrategy : IPricingStrategy
             : unitCost * 1.5m; // Fallback to 50% markup
     }
 
+    /// <summary>
+    /// Calculates the profit margin for a given price and cost.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="suggestedPrice">Suggested selling price.</param>
+    /// <returns>Margin as a fraction of price.</returns>
     public decimal CalculateMargin(decimal unitCost, decimal suggestedPrice)
     {
         if (suggestedPrice <= 0)
@@ -70,10 +106,22 @@ public class TargetMarginStrategy : IPricingStrategy
 /// </summary>
 public class CompetitiveRoundingStrategy : IPricingStrategy
 {
+    /// <summary>
+    /// Gets the display name for this pricing strategy.
+    /// </summary>
     public string Name => "Competitive Rounding";
 
+    /// <summary>
+    /// Gets a short description of how this strategy prices items.
+    /// </summary>
     public string Description => "Applies psychologically appealing prices with rounding";
 
+    /// <summary>
+    /// Calculates a price and applies competitive rounding.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="parameters">Strategy parameters (expects "markup").</param>
+    /// <returns>Suggested selling price.</returns>
     public decimal CalculatePrice(decimal unitCost, Dictionary<string, object> parameters)
     {
         var markup = parameters.TryGetValue("markup", out var markupObj)
@@ -104,6 +152,12 @@ public class CompetitiveRoundingStrategy : IPricingStrategy
         return basePrice;
     }
 
+    /// <summary>
+    /// Calculates the profit margin for a given price and cost.
+    /// </summary>
+    /// <param name="unitCost">Base unit cost.</param>
+    /// <param name="suggestedPrice">Suggested selling price.</param>
+    /// <returns>Margin as a fraction of price.</returns>
     public decimal CalculateMargin(decimal unitCost, decimal suggestedPrice)
     {
         if (suggestedPrice <= 0)
