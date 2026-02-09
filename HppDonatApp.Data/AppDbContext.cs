@@ -90,7 +90,6 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Recipe>()
             .OwnsMany(r => r.Items, navigationBuilder =>
             {
-                navigationBuilder.WithOwner().HasForeignKey(nameof(RecipeItem.Id));
                 navigationBuilder.Property(ri => ri.Quantity).HasPrecision(18, 4);
                 navigationBuilder.Property(ri => ri.PricePerUnit).HasPrecision(18, 4);
                 navigationBuilder.Property(ri => ri.Unit).HasMaxLength(50);

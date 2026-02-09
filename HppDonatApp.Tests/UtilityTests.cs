@@ -12,35 +12,35 @@ public class UtilityTests
     /// Test: Unit converter should convert between units correctly.
     /// </summary>
     [Theory]
-    [InlineData(1m, "kg", "gram", 1000m)]
-    [InlineData(1000m, "gram", "kg", 1m)]
-    [InlineData(1m, "liter", "ml", 1000m)]
-    [InlineData(1m, "kg", "kg", 1m)]  // Same unit
+    [InlineData(1.0, "kg", "gram", 1000.0)]
+    [InlineData(1000.0, "gram", "kg", 1.0)]
+    [InlineData(1.0, "liter", "ml", 1000.0)]
+    [InlineData(1.0, "kg", "kg", 1.0)]
     public void UnitConverter_ShouldConvertCorrectly(
-        decimal quantity, string from, string to, decimal expected)
+        double quantity, string from, string to, double expected)
     {
         // Act
-        var result = UnitConverter.Convert(quantity, from, to);
+        var result = UnitConverter.Convert((decimal)quantity, from, to);
 
         // Assert
-        Assert.Equal(expected, result, 2); // 2 decimal places precision
+        Assert.Equal((decimal)expected, result, 2);
     }
 
     /// <summary>
     /// Test: Rounding engine should apply rules correctly.
     /// </summary>
     [Theory]
-    [InlineData(1234m, "round100", 1200m)]
-    [InlineData(1568m, "round500", 1500m)]
-    [InlineData(4567m, "round1k", 5000m)]
+    [InlineData(1234.0, "round100", 1200.0)]
+    [InlineData(1568.0, "round500", 1500.0)]
+    [InlineData(4567.0, "round1k", 5000.0)]
     public void RoundingEngine_ShouldApplyRulesCorrectly(
-        decimal price, string rule, decimal expected)
+        double price, string rule, double expected)
     {
         // Act
-        var result = RoundingEngine.ApplyRule(price, rule);
+        var result = RoundingEngine.ApplyRule((decimal)price, rule);
 
         // Assert
-        Assert.Equal(expected, result);
+        Assert.Equal((decimal)expected, result);
     }
 
     /// <summary>

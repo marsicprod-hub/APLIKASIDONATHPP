@@ -203,19 +203,19 @@ public class PricingEngineTests
     /// Verifies that rounding rules correctly transform prices.
     /// </summary>
     [Theory]
-    [InlineData(1234m, "round100", 1200m)]
-    [InlineData(1567m, "round500", 1500m)]
-    [InlineData(1234m, "round1k", 1000m)]
-    [InlineData(999m, "round100", 1000m)]
-    [InlineData(1500m, "noround", 1500m)]
+    [InlineData(1234.0, "round100", 1200.0)]
+    [InlineData(1567.0, "round500", 1500.0)]
+    [InlineData(1234.0, "round1k", 1000.0)]
+    [InlineData(999.0, "round100", 1000.0)]
+    [InlineData(1500.0, "noround", 1500.0)]
     public void ApplyRoundingRule_WithVariousRules_ShouldRoundCorrectly(
-        decimal price, string rule, decimal expected)
+        double price, string rule, double expected)
     {
         // Act
-        var result = _pricingEngine.ApplyRoundingRule(price, rule);
+        var result = _pricingEngine.ApplyRoundingRule((decimal)price, rule);
 
         // Assert
-        Assert.Equal(expected, result);
+        Assert.Equal((decimal)expected, result);
     }
 
     /// <summary>
